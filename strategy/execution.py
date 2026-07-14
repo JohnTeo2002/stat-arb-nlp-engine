@@ -12,7 +12,7 @@ class AlphaSignalGenerator:
         smoothed_sentiment = sentiment_pivot.ewm(span=5, min_periods=1).mean()
         
         # Generate cross-sectional ranking vector per day (Neutral Market Allocation)
-        rank_df = smoothed_sentiment.rank(axis=1, method='float')
+        rank_df = smoothed_sentiment.rank(axis=1, method='average')
         mean_rank = rank_df.mean(axis=1)
         std_rank = rank_df.std(axis=1).replace(0, 1)
         
